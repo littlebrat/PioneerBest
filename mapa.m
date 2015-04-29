@@ -22,7 +22,8 @@ R=[0 0; 285 0; 0 544; 285 544];
 s = struct('A',A,'B',B,'C',C,'D',D,'E',E,'F',F,'G',G,'H',H,'I',I,'J',J,'K',K,'L',L,'M',M,'N',N,'O',O,'P',P,'Q',Q,'R',R);
 
 %% Mapa Global com origem em G
-canto=30;
+canto=50;
+desviosala=24;
 
 H(:,1)=H(:,1)+G(2,1);
 I(:,1)=I(:,1)+H(2,1);
