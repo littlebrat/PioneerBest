@@ -44,9 +44,9 @@ while(1)
         
         for i=1:4
              if abs(P(i,1)-x)<4000 && abs(P(i,2)-y)<4000
-                 plot(P(:,1),P(:,2),'*');
+                 plot(P(i,1),P(i,2),'*');
                  drawnow
-                 sonarmap=[sonarmap; P];
+                 sonarmap=[sonarmap; P(i,:)];
              end
         end
        
