@@ -6,11 +6,14 @@ w=36;
 flag=0;
 pioneer_set_controls(SP, 50, 0);
 start(my_timer);
-
 %% Plot Settings
 figure(1)
 hold on
-axis([0  10000 -2500 2500])
+axis([0  15000 -3500 3500])
+
+%% Robot pose
+
+moving=plot(0,0,'ro');
 
 %% Map Construction with Sonar
 sonarmap=[];
@@ -21,6 +24,7 @@ pause(0.5);
 
 while(1)
     if flag==1
+        delete(moving);
         %% Ler odometria
         ODOM=pioneer_read_odometry();
         x=ODOM(1);
@@ -43,7 +47,7 @@ while(1)
         end
         
         for i=1:4
-             if abs(P(i,1)-x)<4000 && abs(P(i,2)-y)<4000
+             if abs(P(i,1)-x)<2000 && abs(P(i,2)-y)<3000
                  plot(P(i,1),P(i,2),'*');
                  drawnow
                  sonarmap=[sonarmap; P(i,:)];
@@ -56,7 +60,7 @@ while(1)
         present=SONAR;
         
         %% odometria do robot
-        plot(ODOM(1),ODOM(2),'or');
+        moving=plot(ODOM(1),ODOM(2),'or');
         
     end
     
