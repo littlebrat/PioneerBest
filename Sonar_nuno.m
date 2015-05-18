@@ -1,4 +1,5 @@
 %% Setup
+clear all
 my_timer=timer('ExecutionMode','fixedRate','Period',0.5,'TimerFcn','flag=my_callback_fcn');
 SP = serial_port_start();
 pioneer_init(SP);
@@ -12,8 +13,9 @@ hold on
 axis([0  15000 -3500 3500])
 
 %% Robot pose
-
-moving=plot(0,0,'ro');
+mypoint1=[0 0];moving1=plot(mypoint1(1),mypoint1(2),'r*');
+redzone=makecircle(500,mypoint1);movingred=plot(redzone(:,1),redzone(:,2),'r');
+yellowzone=makecircle(800,mypoint1);movingyellow=plot(yellowzone(:,1),yellowzone(:,2),'y');
 
 %% Map Construction with Sonar
 sonarmap=[];
@@ -24,7 +26,6 @@ pause(0.5);
 
 while(1)
     if flag==1
-        delete(moving);
         %% Ler odometria
         ODOM=pioneer_read_odometry();
         x=ODOM(1);
@@ -59,12 +60,14 @@ while(1)
         before=present;
         present=SONAR;
         
-        %% odometria do robot
-        moving=plot(ODOM(1),ODOM(2),'or');
-        
+        %% Desenho da pose do robot
+        delete(moving1);
+        delete(movingred);
+        delete(movingyellow);
+        mypoint1=[x y];moving1=plot(mypoint1(1),mypoint1(2),'r*');
+        redzone=makecircle(500,mypoint1);movingred=plot(redzone(:,1),redzone(:,2),'r');
+        yellowzone=makecircle(800,mypoint1);movingyellow=plot(yellowzone(:,1),yellowzone(:,2),'y');
+       
     end
     
 end
-
-
-
