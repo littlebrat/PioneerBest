@@ -8,7 +8,7 @@ function result = buildmap(map,odom,sonar,thr)
        mypoints(i,1)= x + P(i,1)*cos(tet)+P(i,2)*sin(tet);
        mypoints(i,2)= y - P(i,1)*sin(tet)+P(i,2)*cos(tet);
        if abs(mypoints(i,1)-x)<thr && abs(mypoints(i,2)-y)<thr
-         map=[map; P(i,:)];
+         map=[map; mypoints(i,:)];
        end
     end
     result=map;
