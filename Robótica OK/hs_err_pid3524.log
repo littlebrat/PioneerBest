@@ -1,0 +1,116 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (0xe06d7363), pid=3524, tid=4716
+#
+# JRE version: 6.0_17-b04
+# Java VM: Java HotSpot(TM) Client VM (14.3-b01 mixed mode windows-x86 )
+# Problematic frame:
+# C  [KERNELBASE.dll+0x11cda]
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0bc7b400):  JavaThread "main" [_thread_in_native, id=4716, stack(0x00ca0000,0x014a0000)]
+
+siginfo: ExceptionCode=0xe06d7363, ExceptionInformation=0x19930520 0x01499ba4 0x7f2d75bc 
+
+Registers:
+EAX=0x01499ab8, EBX=0x00010004, ECX=0x00000003, EDX=0x00000000
+ESP=0x01499ab8, EBP=0x01499b10, ESI=0x00010004, EDI=0x7efbffc0
+EIP=0x74991cda, EFLAGS=0x00000216
+
+Top of Stack: (sp=0x01499ab8)
+0x01499ab8:   e06d7363 00000001 00000000 74991cda
+0x01499ac8:   00000003 19930520 01499ba4 7f2d75bc
+0x01499ad8:   01499b18 0bfe0ca8 10511a78 00000009
+0x01499ae8:   10510570 0bf21958 00000000 10511a78
+0x01499af8:   1047adf0 120105f0 1213f578 105120b0
+0x01499b08:   1a3603d0 513e21eb 01499b48 0168df60
+0x01499b18:   e06d7363 00000001 00000003 01499b3c
+0x01499b28:   e06d7363 00000001 00000000 00000000 
+
+Instructions: (pc=0x74991cda)
+0x74991cca:   d4 ff ff 83 c4 0c 8d 04 24 50 ff 15 34 83 a4 74
+0x74991cda:   8b 4c 24 54 33 cc e8 dc d0 ff ff 8b e5 5d c2 10 
+
+
+Stack: [0x00ca0000,0x014a0000],  sp=0x01499ab8,  free space=8166k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [KERNELBASE.dll+0x11cda]
+C  [MSVCR90.dll+0x5df60]
+C  [mcr.dll+0x233d5]
+C  [libut.dll+0x1eef3]
+C  [libut.dll+0x27034]
+C  [libut.dll+0x270d6]
+C  [libut.dll+0x1c8c9]
+C  [libuij.dll+0x229f2]
+C  [jmi.dll+0x333aa]
+j  com.mathworks.jmi.NativeMatlab.processPendingEvents()Z+8
+j  com.mathworks.jmi.Matlab$ProcessPendingEvents.callBooleanMethod(Ljava/lang/Object;)Z+0
+j  com.mathworks.util.FactoryUtils.processPendingEvents()Z+12
+j  com.mathworks.mde.desk.MLDesktop.canClose()Z+84
+j  com.mathworks.mde.desk.MLDesktop$2.call()Ljava/lang/Boolean;+4
+j  com.mathworks.mde.desk.MLDesktop$2.call()Ljava/lang/Object;+1
+j  com.mathworks.jmi.Matlab.isOkToExit()Z+54
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0xecf9c]
+V  [jvm.dll+0x1741d1]
+V  [jvm.dll+0xed01d]
+V  [jvm.dll+0xf5be5]
+V  [jvm.dll+0xfb632]
+C  [jmi.dll+0x100c3]
+C  [jmi.dll+0x1ffdf]
+C  [mcr.dll+0x4ab51]
+C  [mcr.dll+0x4ad96]
+C  [mcr.dll+0x4b035]
+C  [m_dispatcher.dll+0x11db5]
+C  [m_dispatcher.dll+0x11d3b]
+C  [m_dispatcher.dll+0x11b1a]
+C  [m_dispatcher.dll+0x14409]
+C  [m_dispatcher.dll+0x11db5]
+C  [m_dispatcher.dll+0x11d3b]
+C  [m_dispatcher.dll+0x117aa]
+C  [m_interpreter.dll+0xa9414]
+C  [m_interpreter.dll+0xa19f8]
+C  [m_interpreter.dll+0xc7664]
+C  [m_interpreter.dll+0x33151d]
+C  0x73225a75
+C  0x73225f53
+C  0x732264e4
+C  0x7323563d
+C  0x73235703
+J  com.mathworks.jmi.NativeMatlab.SendMatlabMessage(Ljava/lang/Object;)Ljava/lang/Object;
+J  com.mathworks.jmi.Matlab.mtFevalConsoleOutput(Ljava/lang/String;[Ljava/lang/Object;I)Ljava/lang/Object;
+j  com.mathworks.mde.desk.MLDesktop$8.run()V+14
+J  com.mathworks.jmi.NativeMatlab.dispatchMTRequests(Z)V
+v  ~StubRoutines::call_stub
+V  [jvm.dll+0xecf9c]
+V  [jvm.dll+0x1741d1]
+V  [jvm.dll+0xed01d]
+V  [jvm.dll+0xf5be5]
+V  [jvm.dll+0xfd932]
+C  [jmi.dll+0x10422]
+C  [jmi.dll+0x162e4]
+C  [jmi.dll+0x16372]
+C  [m_interpreter.dll+0x7f677]
+C  [m_interpreter.dll+0x7f792]
+C  [m_interpreter.dll+0x76580]
+C  [m_interpreter.dll+0x74307]
+C  [m_interpreter.dll+0x7ac79]
+C  [m_dispatcher.dll+0x114b8]
+C  [m_dispatcher.dll+0x118cf]
+C  [mcos.dll+0xc95bd]
+C  [mcos.dll+0x1c683]
+C  [m_dispatcher.dll+0x11c35]
+C  [m_dispatcher.dll+0x118cf]
+C  [m_interpreter.dll+0xb1154]
+C  [m_interpreter.dll+0xce68a]
+C  [m_interpreter.dll+0x7f11]
+C  [m_interpreter.dll+0x8ec14]
+C
