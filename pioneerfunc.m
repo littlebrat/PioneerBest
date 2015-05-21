@@ -1,7 +1,8 @@
-my_timer=timer('ExecutionMode','fixedRate','Period',0.1,'TimerFcn', 'flag=my_callback_fcn');
-%my_timercalibration=timer('ExecutionMode','fixedRate','Period',7,'TimerFcn', 'flagcalib=my_callback_fcncalib');
+addpath('matlab_pioneer','DealingSonars');
+my_timer=timer('ExecutionMode','fixedRate','Period',0.1,'TimerFcn', 'flag=my_callback_fcn;');
+my_timersonars=timer('ExecutionMode','fixedRate','Period',0.3,'TimerFcn', 'flagsonars=my_callback_fcncalib;');
 flag=0;
-%flagcalib=0;
+flagsonars=0;
 counttimer=0;
 %Trajectoria de referência
 x_ref=[];
@@ -9,16 +10,14 @@ y_ref=[];
 teta_ref=[];
 v_ref=[];
 w_ref=[];
-figure
 k=1;
-hold on;
 
 %Início: robot está na sala
 y_ref(k)=-3670;
 x_ref(k)=-2350;
 teta_ref(k)=0;
 
-%plot(x_ref(k),y_ref(k),'*');
+ 
 
 while x_ref(k)<-0.55*1000
     
@@ -29,7 +28,7 @@ while x_ref(k)<-0.55*1000
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 
@@ -39,7 +38,7 @@ y_ref(k)=-3.67*1000;
 x_ref(k)=-0.55*1000;
 teta_ref(k)=0;
 
-%plot(x_ref(k),y_ref(k),'*');
+ 
 while y_ref(k)<-2.51*1000
     
        v_ref(k)=0.1;
@@ -48,7 +47,7 @@ while y_ref(k)<-2.51*1000
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %Linha recta até à porta
@@ -57,7 +56,7 @@ y_ref(k)=-2.51*1000;
 x_ref(k)=0.61*1000;
 teta_ref(k)=pi/2-atan2(0.21,2.51);
 
-%plot(x_ref(k),y_ref(k),'*');
+ 
 while y_ref(k)<0
     
        v_ref(k)=0.1;
@@ -67,14 +66,14 @@ while y_ref(k)<0
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 %robot está na porta
 y_ref(k)=0;
 x_ref(k)=0.83*1000;
 teta_ref(k)=pi/2;
 
-%plot(x_ref(k),y_ref(k),'*');
+ 
 while x_ref(k)<1.67*1000
     
        v_ref(k)=0.1;
@@ -83,7 +82,7 @@ while x_ref(k)<1.67*1000
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot v_refai andar em linha recta no corredor dos elev_refadores
@@ -98,7 +97,7 @@ while x_ref(k)<14.06*1000
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot v_refai passar o canto entre o corredor dos elev_refadores e o das casas de
@@ -113,9 +112,9 @@ while y_ref(k)<1.67*1000
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
+      
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot v_refai entrar no corredor das casas de banho
@@ -131,9 +130,9 @@ while y_ref(k)<14.06*1000
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
+      
        k=k+1;
-      % plot(x_ref(k),y_ref(k),'*');
+       
 end
 
 %robot v_refai passar o canto entre o corredor das casas de banho e o da sala
@@ -149,9 +148,8 @@ while x_ref(k)>14.06*1000
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot v_refai passar pelo corredor da sala de controlo
@@ -167,9 +165,9 @@ while x_ref(k)>1.67*1000
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
+       
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot v_refai passar o canto entre o corredor da sala de controlo e o corredor
@@ -185,9 +183,9 @@ while y_ref(k)>14.06*1000
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
+       
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 %robot vai passar pelo corredor de regresso
@@ -204,16 +202,16 @@ while y_ref(k)>0
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
        teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
-       hold on;
+       
        k=k+1;
-       %plot(x_ref(k),y_ref(k),'*');
+        
 end
 
 % Seguir a trajectória de referência
 SP = serial_port_start();
 pioneer_init(SP);
 start(my_timer);
-%start(my_timercalibration);
+start(my_timersonars);
 % Seguir a trajectória de referência
 
 
@@ -221,41 +219,84 @@ start(my_timer);
 wn=0.2;
 csi=0.9;
 
+
+
 K1=2*wn*csi;
 K3=2*wn*csi;
 V=[];
-a=12; %15
+a=20; %20
 b=10;
-c=30; %20
-k=1;
+c=13;
+aa=10; %10
+bb=8; %8
+cc=20; %20
+ctetrans=75;
+k=1;    
 i=0;
 count_y=0;
 count_x=0;
 xcount=[];
 ycount=[];
+count_x_transv=0;
+count_y_transv=0;
+map=[];
+allreading=zeros(3,4);
+dist=10000;
 while k<length(x_ref)-1
-   
-    K2=(wn^2-(w_ref(k))^2)/abs(v_ref(k));
     
+    K2=(wn^2-(w_ref(k))^2)/abs(v_ref(k));   
     ODOM=pioneer_read_odometry();
     teta(k)=ODOM(3)*(2*pi)/4096;
     if(k~=1 && teta_ref(k)==pi) 
-        y(k)=ODOM(2)-3670+a*sin(teta(k))+count_y;
-        x(k)=ODOM(1)-2350+a*cos(teta(k))+count_x;
+        y(k)=ODOM(2)-3670+a*sin(teta(k))+count_y-aa*cos(teta(k));
+        x(k)=ODOM(1)-2350+a*cos(teta(k))+count_x+aa*sin(teta(k));   
+                
     else
-        if(k~=1 && teta_ref(k)==-pi/2)
-             y(k)=ODOM(2)-3670+c*sin(teta(k))+count_y;
-             x(k)=ODOM(1)-2350+c*cos(teta(k))+count_x;
+        if(k~=1 && teta_ref(k)==pi/2)
+        x(k)=ODOM(1)-2350+c*cos(teta(k))+count_x+cc*sin(teta(k));
+        y(k)=ODOM(2)-3670+c*sin(teta(k))+count_y-cc*cos(teta(k));
+        
         else
-          if(k~=1)
-          y(k)=ODOM(2)-3670+b*sin(teta(k))+count_y;
-          x(k)=ODOM(1)-2350+b*cos(teta(k))+count_x;
-          else
+            if(k~=1)
+            y(k)=ODOM(2)-3670+b*sin(teta(k))+count_y-bb*cos(teta(k));
+            x(k)=ODOM(1)-2350+b*cos(teta(k))+count_x+bb*sin(teta(k));
+                
+            else
             y(k)=ODOM(2)-3670;
             x(k)=ODOM(1)-2350;
-          end
+            end
+        end
+          
+    end
+    
+    T=40; %thresholdpontos
+    
+     if(rem(k,500)==0)
+        if(dist<2000 && x(k)>0 && y(k)>0)
+            if(teta_ref(k)==0)
+               
+                count_x=count_x+15730-dist-x(k);
+                x(k)=15730-dist;
+
+            else
+                if(teta_ref(k)==pi/2)
+                
+                count_y=count_y+15730-dist-y(k);
+                y(k)=15730-dist;
+                
+                else
+                    if(teta_ref(k)==pi)
+
+                    count_x=count_x+dist-x(k);
+                    x(k)=dist;
+                    end
+                end
+            end
+                
+            
         end
     end
+    
     we_teta=teta_ref(k)-teta(k);
     we_teta=wrapToPi(we_teta);
     we_x=(x_ref(k)-x(k))/1000;
@@ -272,44 +313,38 @@ while k<length(x_ref)-1
     V=[V v];
     w=floor(w*180/pi);
     v=round(v);
-  
-    if flag==1
+    if(flag==1)
         if(rem(k,100)==0 && teta_ref(k)==pi) 
-             count_x=count_x+cos(teta(k))*a;
-             count_y=count_y+sin(teta(k))*a;
+             count_x=count_x+cos(teta(k))*a+sin(teta(k))*aa;
+             count_y=count_y+sin(teta(k))*a-cos(teta(k))*aa;
             
         else
-            if(rem(k,100)==0 && teta_ref(k)==-pi/2) 
-             count_x=count_x+cos(teta(k))*c;
-             count_y=count_y+sin(teta(k))*c;
-            
-              else
+            if(rem(k,100)==0 && teta_ref(k)==pi/2 && y_ref(k)>0)
+             count_x=count_x+cos(teta(k))*c+sin(teta(k))*cc;
+             count_y=count_y+sin(teta(k))*c-cos(teta(k))*cc;
+             
+            else
                 if(rem(k,100)==0)
-                 count_x=count_x+cos(teta(k))*b;
-                 count_y=count_y+sin(teta(k))*b;
+                 count_x=count_x+cos(teta(k))*b+sin(teta(k))*b;
+                 count_y=count_y+sin(teta(k))*b-cos(teta(k))*b;
                 end
             end
-         end
+        end
+         
+    if( k~=1 && flagsonars==1 && (x(k)>0 && y(k)>0))
+        nowRead=pioneer_read_sonars();
+        allreading=updateReadings(nowRead,allreading);
+        proven_sonar=filterSon(allreading);
+        map=buildmap(map,[x(k) y(k) teta(k)],proven_sonar,3000);
+        dist=detectFrontWall(map,[x(k) y(k) teta(k)],20)
+        flagsonars=0;
+    end
        xcount=[xcount count_x];
        ycount=[ycount count_y];
         
-        if(teta_ref(k)==pi/2 && x_ref(k)>14*1000)
-             w=w+4;
-        else
-            if(teta_ref(k)==pi)
-            w=w+3;
-                else
-                    if(teta_ref(k)==-pi/2)
-                    w=w+3;
-                    else
-                         w=w+1;
-                    end
-            end
-        end 
         pioneer_set_controls(SP, v, w);
         k=k+1;
         flag=0;
     end
 end
-
 

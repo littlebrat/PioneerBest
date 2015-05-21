@@ -19,4 +19,4 @@ proven_sonar=filterSon(allreading);
 map=buildmap(map,***odom_here***,proven_sonar,4000);
 
 %para detectar parede
-detectFrontWall(map,***odom_here***,***numero_pontos_threshold***);
+d=detectFrontWall(map,***odom_here***,***numero_pontos_threshold***);
