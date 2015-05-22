@@ -5,10 +5,10 @@ function result = buildmap(map,odom,sonar,thr)
     tet=odom(3);
      
     for i=1:4
-       mypoints(i,1)= x + mypoints(i,1)*cos(tet)+mypoints(i,2)*sin(tet);
-       mypoints(i,2)= y - mypoints(i,1)*sin(tet)+mypoints(i,2)*cos(tet);
-       if abs(mypoints(i,1)-x)<thr && abs(mypoints(i,2)-y)<thr
-         map=[map; mypoints(i,:)];
+       xglobal= x + mypoints(i,1)*cos(tet)+mypoints(i,2)*sin(tet);
+       yglobal= y - mypoints(i,1)*sin(tet)+mypoints(i,2)*cos(tet);
+       if sonar(i)<thr
+         map=[map; xglobal yglobal];
        end
     end
     result=map;

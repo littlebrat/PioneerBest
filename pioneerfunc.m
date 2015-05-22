@@ -1,3 +1,4 @@
+clear all
 addpath('matlab_pioneer','DealingSonars');
 my_timer=timer('ExecutionMode','fixedRate','Period',0.1,'TimerFcn', 'flag=my_callback_fcn;');
 my_timersonars=timer('ExecutionMode','fixedRate','Period',0.3,'TimerFcn', 'flagsonars=my_callback_fcncalib;');
@@ -335,8 +336,9 @@ while k<length(x_ref)-1
         nowRead=pioneer_read_sonars();
         allreading=updateReadings(nowRead,allreading);
         proven_sonar=filterSon(allreading);
-        map=buildmap(map,[x(k) y(k) teta(k)],proven_sonar,3000);
-        dist=detectFrontWall(map,[x(k) y(k) teta(k)],20)
+        odom_sonar=[x(k) y(k) teta(k)]
+        map=buildmap(map,odom_sonar,proven_sonar,2500);
+        %detectFrontWall(map,odom_sonar,20)
         flagsonars=0;
     end
        xcount=[xcount count_x];
