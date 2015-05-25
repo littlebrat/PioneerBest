@@ -208,6 +208,57 @@ while y_ref(k)>0
         
 end
 
+%robot vai entrar na sala
+
+y_ref(k)=0;
+x_ref(k)=0.83*1000;
+teta_ref(k)=-pi/2-atan2(0.21,2.51);
+
+while y_ref(k)>-2.51*1000
+    
+       v_ref(k)=0.1;
+       w_ref(k)=0;
+       
+       x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
+       y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
+       teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
+       k=k+1;
+        
+end
+
+y_ref(k)=-2.51*1000;
+x_ref(k)=0.61*1000;
+teta_ref(k)=-pi/2;
+
+%curva dentro da sala
+ 
+while x_ref(k)>-0.55*1000
+    
+       v_ref(k)=0.1;
+       w_ref(k)=-v_ref(k)/1.16;
+       x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
+       y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
+       teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
+       k=k+1;
+        
+end
+
+y_ref(k)=-3.67*1000;
+x_ref(k)=-0.55*1000;
+teta_ref(k)=-pi;
+
+while x_ref(k)>-2.35*1000
+    
+       v_ref(k)=0.1;
+       w_ref(k)=0;
+       
+       x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
+       y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
+       teta_ref(k+1)=teta_ref(k)+w_ref(k)*0.1;
+       k=k+1;
+        
+end
+
 % Seguir a trajectória de referência
 SP = serial_port_start();
 pioneer_init(SP);
@@ -225,12 +276,12 @@ csi=0.9;
 K1=2*wn*csi;
 K3=2*wn*csi;
 V=[];
-a=20; %20
+a=19.5; %20
 b=10;
-c=13;
+c=10;
 aa=10; %10
 bb=8; %8
-cc=20; %20
+cc=25; %20
 ctetrans=75;
 k=1;    
 i=0;
@@ -336,8 +387,8 @@ while k<length(x_ref)-1
         nowRead=pioneer_read_sonars();
         allreading=updateReadings(nowRead,allreading);
         proven_sonar=filterSon(allreading);
-        odom_sonar=[x(k) y(k) teta(k)]
-        map=buildmap(map,odom_sonar,proven_sonar,2500);
+        odom_sonar=[x(k) y(k) teta(k)];
+        map=buildmap(map,odom_sonar,proven_sonar,3000);
         %detectFrontWall(map,odom_sonar,20)
         flagsonars=0;
     end
@@ -350,3 +401,4 @@ while k<length(x_ref)-1
     end
 end
 
+serial_port_stop(SP);
