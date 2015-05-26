@@ -5,7 +5,7 @@ function result = detectSide(map,odom,thrpoints)
     mydistance=0;
     result=10000;
     for i=1:size(map,1)
-       if abs(map(i,1)-x)<2000 && abs(map(i,2)-y)<2000
+       if abs(map(i,1)-x)<1200 && abs(map(i,2)-y)<1200
            mydistance=mydistance+map(i,1); 
            pointsdetected=pointsdetected+1;
        end

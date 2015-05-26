@@ -294,6 +294,7 @@ ycount=[];
 count_x_transv=0;
 count_y_transv=0;
 map=[];
+wall=[];
 allreading=zeros(3,4);
 dist=10000;
 while k<length(x_ref)-1
@@ -394,9 +395,9 @@ while k<length(x_ref)-1
         allreading=updateReadings(nowRead,allreading);
         proven_sonar=filterSon(allreading);
         odom_sonar=[x(k) y(k) teta(k)];
-        map=buildmap(map,odom_sonar,proven_sonar,3500);
-        
-        %detectFrontWall(map,odom_sonar,20)
+        %map=buildmap(map,odom_sonar,proven_sonar,3500);
+        wall=buildWall(wall,odom_sonar,proven_sonar,1200); % constroi a parede dinamicamente
+        dist=detectSide(wall,odom_sonar,30);% o valor 30 corresponde ao numero de pontos que consideramos para o calculo da distancia a parede
         flagsonars=0;
     end
        xcount=[xcount count_x];
