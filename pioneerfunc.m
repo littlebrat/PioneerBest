@@ -278,10 +278,12 @@ K3=2*wn*csi;
 V=[];
 a=19.5; %20
 b=10;
-c=10;
-aa=10; %10
-bb=8; %8
-cc=25; %20
+c=14; 
+d=0;
+aa=27; %20 %25 
+bb=15; %8 %10
+cc=27; %25
+dd=15;
 ctetrans=75;
 k=1;    
 i=0;
@@ -303,51 +305,55 @@ while k<length(x_ref)-1
         y(k)=ODOM(2)-3670+a*sin(teta(k))+count_y-aa*cos(teta(k));
         x(k)=ODOM(1)-2350+a*cos(teta(k))+count_x+aa*sin(teta(k));   
                 
-    else
-        if(k~=1 && teta_ref(k)==pi/2)
+    elseif(k~=1 && teta_ref(k)==pi/2)
         x(k)=ODOM(1)-2350+c*cos(teta(k))+count_x+cc*sin(teta(k));
         y(k)=ODOM(2)-3670+c*sin(teta(k))+count_y-cc*cos(teta(k));
         
-        else
-            if(k~=1)
-            y(k)=ODOM(2)-3670+b*sin(teta(k))+count_y-bb*cos(teta(k));
-            x(k)=ODOM(1)-2350+b*cos(teta(k))+count_x+bb*sin(teta(k));
-                
-            else
-            y(k)=ODOM(2)-3670;
-            x(k)=ODOM(1)-2350;
-            end
-        end
+    elseif(k~=1 && teta_ref(k)==0)
+        y(k)=ODOM(2)-3670+b*sin(teta(k))+count_y-bb*cos(teta(k));
+        x(k)=ODOM(1)-2350+b*cos(teta(k))+count_x+bb*sin(teta(k));
+        
+    elseif(k~=1 && teta_ref(k)==-pi/2)
+        y(k)=ODOM(2)-3670+d*sin(teta(k))+count_y-dd*cos(teta(k));
+        x(k)=ODOM(1)-2350+d*cos(teta(k))+count_x+dd*sin(teta(k));
+        
+    elseif(k~=1)
+        y(k)=ODOM(2)-3670+count_y;
+        x(k)=ODOM(1)-2350+count_x;
+    
+    else
+        y(k)=ODOM(2)-3670;
+        x(k)=ODOM(1)-2350;
           
     end
     
     T=40; %thresholdpontos
     
-     if(rem(k,500)==0)
-        if(dist<2000 && x(k)>0 && y(k)>0)
-            if(teta_ref(k)==0)
-               
-                count_x=count_x+15730-dist-x(k);
-                x(k)=15730-dist;
-
-            else
-                if(teta_ref(k)==pi/2)
-                
-                count_y=count_y+15730-dist-y(k);
-                y(k)=15730-dist;
-                
-                else
-                    if(teta_ref(k)==pi)
-
-                    count_x=count_x+dist-x(k);
-                    x(k)=dist;
-                    end
-                end
-            end
-                
-            
-        end
-    end
+%      if(rem(k,500)==0)
+%         if(dist<2000 && x(k)>0 && y(k)>0)
+%             if(teta_ref(k)==0)
+%                
+%                 count_x=count_x+15730-dist-x(k);
+%                 x(k)=15730-dist;
+% 
+%             else
+%                 if(teta_ref(k)==pi/2)
+%                 
+%                 count_y=count_y+15730-dist-y(k);
+%                 y(k)=15730-dist;
+%                 
+%                 else
+%                     if(teta_ref(k)==pi)
+% 
+%                     count_x=count_x+dist-x(k);
+%                     x(k)=dist;
+%                     end
+%                 end
+%             end
+%                 
+%             
+%         end
+%     end
     
     we_teta=teta_ref(k)-teta(k);
     we_teta=wrapToPi(we_teta);
@@ -370,17 +376,17 @@ while k<length(x_ref)-1
              count_x=count_x+cos(teta(k))*a+sin(teta(k))*aa;
              count_y=count_y+sin(teta(k))*a-cos(teta(k))*aa;
             
-        else
-            if(rem(k,100)==0 && teta_ref(k)==pi/2 && y_ref(k)>0)
+        elseif(rem(k,100)==0 && teta_ref(k)==pi/2 && y_ref(k)>0)
              count_x=count_x+cos(teta(k))*c+sin(teta(k))*cc;
              count_y=count_y+sin(teta(k))*c-cos(teta(k))*cc;
              
-            else
-                if(rem(k,100)==0)
-                 count_x=count_x+cos(teta(k))*b+sin(teta(k))*b;
-                 count_y=count_y+sin(teta(k))*b-cos(teta(k))*b;
-                end
-            end
+        elseif(rem(k,100)==0 && teta_ref(k)==0 && y_ref(k)>0)
+             count_x=count_x+cos(teta(k))*b+sin(teta(k))*bb;
+             count_y=count_y+sin(teta(k))*b-cos(teta(k))*bb;
+             
+        elseif(rem(k,100)==0 && teta_ref(k)==-pi/2)
+             count_x=count_x+cos(teta(k))*d+sin(teta(k))*dd;
+             count_y=count_y+sin(teta(k))*d-cos(teta(k))*dd;
         end
          
     if( k~=1 && flagsonars==1 && (x(k)>0 && y(k)>0))
@@ -388,7 +394,7 @@ while k<length(x_ref)-1
         allreading=updateReadings(nowRead,allreading);
         proven_sonar=filterSon(allreading);
         odom_sonar=[x(k) y(k) teta(k)];
-        map=buildmap(map,odom_sonar,proven_sonar,3000);
+        map=buildmap(map,odom_sonar,proven_sonar,3500);
         %detectFrontWall(map,odom_sonar,20)
         flagsonars=0;
     end
