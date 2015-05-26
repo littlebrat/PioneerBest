@@ -278,11 +278,11 @@ K3=2*wn*csi;
 V=[];
 a=19.5; %20
 b=10;
-c=14; 
+c=16; 
 d=0;
-aa=27; %20 %25 
+aa=30; %20 %25 %27
 bb=15; %8 %10
-cc=27; %25
+cc=30; %25 %27
 dd=15;
 ctetrans=75;
 k=1;    
@@ -395,6 +395,7 @@ while k<length(x_ref)-1
         proven_sonar=filterSon(allreading);
         odom_sonar=[x(k) y(k) teta(k)];
         map=buildmap(map,odom_sonar,proven_sonar,3500);
+        
         %detectFrontWall(map,odom_sonar,20)
         flagsonars=0;
     end

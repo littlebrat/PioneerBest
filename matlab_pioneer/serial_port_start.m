@@ -14,7 +14,7 @@ if isempty(varargin)
     if strcmp(computer,'GLNX86')
         port_name = '/dev/ttyS0';
     else
-        port_name = 'COM6';
+        port_name = 'COM3';
     end
 else
     port_name = varargin{1};
