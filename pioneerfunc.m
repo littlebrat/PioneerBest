@@ -22,7 +22,7 @@ teta_ref(k)=0;
 
 while x_ref(k)<-0.55*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -42,7 +42,7 @@ teta_ref(k)=0;
  
 while y_ref(k)<-2.51*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=v_ref(k)/1.16;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -60,7 +60,7 @@ teta_ref(k)=pi/2-atan2(0.21,2.51);
  
 while y_ref(k)<0
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -77,7 +77,7 @@ teta_ref(k)=pi/2;
  
 while x_ref(k)<1.67*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=-v_ref(k)/0.83;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -92,7 +92,7 @@ x_ref(k)=1.67*1000;
 teta_ref(k)=0;
 while x_ref(k)<14.06*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -108,7 +108,7 @@ x_ref(k)=14.06*1000;
 teta_ref(k)=0;
 while y_ref(k)<1.67*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=v_ref(k)/0.83;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -125,7 +125,7 @@ teta_ref(k)=pi/2;
 
 while y_ref(k)<14.06*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -144,7 +144,7 @@ x_ref(k)=14.90*1000;
 teta_ref(k)=pi/2;
 while x_ref(k)>14.06*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=v_ref(k)/0.83;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -161,7 +161,7 @@ teta_ref(k)=pi;
 
 while x_ref(k)>1.67*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -179,7 +179,7 @@ x_ref(k)=1.67*1000;
 teta_ref(k)=pi;
 while y_ref(k)>14.06*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=v_ref(k)/0.83;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -197,7 +197,7 @@ teta_ref(k)=-pi/2;
 
 while y_ref(k)>0
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -216,7 +216,7 @@ teta_ref(k)=-pi/2-atan2(0.21,2.51);
 
 while y_ref(k)>-2.51*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -234,7 +234,7 @@ teta_ref(k)=-pi/2;
  
 while x_ref(k)>-0.55*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=-v_ref(k)/1.16;
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
        y_ref(k+1)=y_ref(k)+sin(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -249,7 +249,7 @@ teta_ref(k)=-pi;
 
 while x_ref(k)>-2.35*1000
     
-       v_ref(k)=0.1;
+       v_ref(k)=0.3;
        w_ref(k)=0;
        
        x_ref(k+1)=x_ref(k)+cos(teta_ref(k))*v_ref(k)*1000*0.1;
@@ -259,6 +259,8 @@ while x_ref(k)>-2.35*1000
         
 end
 
+s=wavread('bak.wav');
+sound(s,12000);
 % Seguir a trajectória de referência
 SP = serial_port_start();
 pioneer_init(SP);
@@ -268,7 +270,7 @@ start(my_timersonars);
 
 
 % K's da lei de Controlo
-wn=0.2;
+wn=0.2-;
 csi=0.9;
 
 
@@ -276,9 +278,9 @@ csi=0.9;
 K1=2*wn*csi;
 K3=2*wn*csi;
 V=[];
-a=19.5; %20
-b=10;
-c=16; 
+a=22; %20
+b=11;
+c=17; 
 d=0;
 % aa=30; %20 %25 %27
 % bb=15; %8 %10
@@ -294,8 +296,9 @@ ycount=[];
 %count_x_transv=0;
 %count_y_transv=0;
 map=[];
-x=[];
-y=[];
+x=zeros(1,size(x_ref,2));
+y=zeros(1,size(y_ref,2));
+W=[];
 wall=[];
 allreading=zeros(5,4);
 dist=0;
@@ -307,25 +310,25 @@ while k<length(x_ref)-1
     
     
       if(flag==1)
-        if(rem(k,100)==0 && teta_ref(k)==pi  && y_ref(k)>0 && dist <10000) 
+        if(rem(k,33)==0 && teta_ref(k)==pi  && y_ref(k)>0 && dist <10000) 
             % count_x=count_x+cos(teta(k))*a+sin(teta(k))*aa;
             % count_y=count_y+sin(teta(k))*a-cos(teta(k))*aa;
               count_x=count_x-a;
               count_y=15730-dist-ODOM(2)+3670;
               
-        elseif(rem(k,100)==0 && teta_ref(k)==pi/2 && y_ref(k)>0 && dist <10000)
+        elseif(rem(k,33)==0 && teta_ref(k)==pi/2 && y_ref(k)>0 && dist <10000)
             % count_x=count_x+cos(teta(k))*c+sin(teta(k))*cc;
             % count_y=count_y+sin(teta(k))*c-cos(teta(k))*cc;
               count_y=count_y+c;
               count_x=15730-dist-ODOM(1)+2350;
              
-        elseif(rem(k,100)==0 && teta_ref(k)==0 && y_ref(k)>0 && dist <10000)
+        elseif(rem(k,33)==0 && teta_ref(k)==0 && y_ref(k)>0 && dist <10000)
             % count_x=count_x+cos(teta(k))*b+sin(teta(k))*bb;
             % count_y=count_y+sin(teta(k))*b-cos(teta(k))*bb;
               count_x=count_x+b;
               count_y=-ODOM(2)+3670+dist;
               
-        elseif(rem(k,100)==0 && teta_ref(k)==-pi/2 && y_ref(k)>0 && dist <10000)
+        elseif(rem(k,33)==0 && teta_ref(k)==-pi/2 && y_ref(k)>0 && dist <10000)
              count_y=count_y+d;
              count_x=dist-ODOM(1)+2350;
             % count_x=count_x+cos(teta(k))*d+sin(teta(k))*dd;
@@ -379,6 +382,7 @@ while k<length(x_ref)-1
     w=w_ref(k)-u2;
     V=[V v];
     w=floor(w*180/pi);
+    W=[W w];
     v=round(v);
     
     
@@ -387,6 +391,9 @@ while k<length(x_ref)-1
         allreading=updateReadings(nowRead,allreading);
         proven_sonar=filterSon(allreading);
         dist=proven_sonar(4)
+        if(dist>1500)
+            dist=10000;
+        end
         odom_sonar=[x(k) y(k) teta_ref(k)];
         %map=buildmap(map,odom_sonar,proven_sonar,3500);
         wall=buildWall(wall,odom_sonar,proven_sonar,1200); % constroi a parede dinamicamente
